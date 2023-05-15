@@ -1,12 +1,13 @@
-#include <monty.h>
+#include "monty.h"
 /**
  *
  */
-void *get_op((char *token, unsigned int line))(stack_t **stack, unsigned int line_number)
+function_ptr get_op(char *token, unsigned int line)
 {
 	int i;
 
-	instruction_t op[] = {{"push", _push},
+	instruction_t op[] = {
+		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
 		{"pop", _pop},
@@ -16,11 +17,21 @@ void *get_op((char *token, unsigned int line))(stack_t **stack, unsigned int lin
 		{NULL, NULL},
 	};
 
-	for(i = 0; op[i].opcode != NULL; i++)
+	while (isspace((unsigned char) *token))
+		token++;
+
+	char *end = token + strlen(token) - 1;
+	while (end > token && isspace((unsigned char) *end))
+		end--;
+	end[1] = '\0';
+
+
+	for (i = 0; op[i].opcode != NULL; i++)
 	{
-		if(strcmp(token, op[i].opcode) == 0)
-			return (op[i].f)
+		if (strcasecmp(token, op[i].opcode) == 0)
+			return op[i].f;
 	}
-	fprintf(stderr, "L %u : unknown instruction %s\n", line_number, token);
+
+	fprintf(stderr, "L %u : unknown instruction %s\n", line, token);
 	exit(EXIT_FAILURE);
 }
