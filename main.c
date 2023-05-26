@@ -5,7 +5,7 @@ int main(int argc,char *argv[])
 {
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	stack_t *head = NULL;
@@ -18,9 +18,15 @@ int main(int argc,char *argv[])
 	data++;
 	filePointer = fopen(argv[1], "r");
 	if (filePointer == NULL)
+	{
+		fprintf(stderr, "ERROR: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
+	}
 	while(fgets(line, bufferLength, filePointer))
 	{
+		if (strcmp(line,"\n") == 0)
+			lineCounter++;
+		lineCounter++;
 		j = 0;
 		p = strtok(line, " ");
 		while (p != NULL)
@@ -29,9 +35,16 @@ int main(int argc,char *argv[])
 			p = strtok(NULL, " ");
 			j++;
 		}
-		lineCounter++;
 		if (strcmp(strarray[0], "push") == 0)
-			data = atoi(strarray[1]);
+		{
+			if (isdigit(atoi(strarray[1])) < 0)
+			{
+				fprintf(stderr, "L%u: usage: push integer\n", lineCounter);
+				exit(EXIT_FAILURE);
+			}
+			else
+				data = atoi(strarray[1]);
+		}
 		function_ptr p_func = NULL;
 		p_func = get_op(strarray[0], lineCounter);
 		p_func(&head, lineCounter);

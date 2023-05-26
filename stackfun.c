@@ -16,14 +16,6 @@ void _push(stack_t **head, __attribute__((unused)) unsigned int linenumber)
 	new_node->n = data;
 	new_node->prev = NULL;
 
-	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	new_node->n = data;
-	new_node->prev = NULL;
-
 	if (*head == NULL)
 	{
 		new_node->next = NULL;

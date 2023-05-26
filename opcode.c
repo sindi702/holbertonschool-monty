@@ -1,6 +1,9 @@
 #include "monty.h"
 /**
- *
+ * get_op - fun pointer that takes argument of function in struct
+ * @token: token
+ * @line: line number
+ * Return: return NULL
  */
 function_ptr get_op(char *token, unsigned int line)
 {
@@ -21,6 +24,7 @@ function_ptr get_op(char *token, unsigned int line)
 		token++;
 
 	char *end = token + strlen(token) - 1;
+
 	while (end > token && isspace((unsigned char) *end))
 		end--;
 	end[1] = '\0';
@@ -29,9 +33,10 @@ function_ptr get_op(char *token, unsigned int line)
 	for (i = 0; op[i].opcode != NULL; i++)
 	{
 		if (strcasecmp(token, op[i].opcode) == 0)
-			return op[i].f;
+			return (op[i].f);
 	}
 
-	fprintf(stderr, "L %u : unknown instruction %s\n", line, token);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
 	exit(EXIT_FAILURE);
 }
+
