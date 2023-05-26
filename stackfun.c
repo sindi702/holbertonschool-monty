@@ -32,6 +32,7 @@ void _push(stack_t **head, __attribute__((unused)) unsigned int linenumber)
 void _pall(stack_t **head, __attribute__((unused)) unsigned int line)
 {
 	stack_t *tmp = *head;
+
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
@@ -54,7 +55,7 @@ void _pop(stack_t **head, unsigned int num)
 {
 	if (*head == NULL)
 	{
-		fprintf(stderr ,"L%d: can't pop an empty stack\n", num);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", num);
 		exit(EXIT_FAILURE);
 	}
 
@@ -100,7 +101,5 @@ void _add(stack_t **head, unsigned int num)
 
 void _nop(__attribute__((unused)) stack_t **head, __attribute__((unused)) unsigned int num)
 {
-        
-
 }
 
