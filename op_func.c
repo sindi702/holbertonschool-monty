@@ -67,7 +67,6 @@ void add(stack_t **stack, unsigned int line_number)
 {
 	int sum = 0;
 
-<<<<<<< HEAD
 	if (stack_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
@@ -76,9 +75,4 @@ void add(stack_t **stack, unsigned int line_number)
 	sum = (*stack)->n + (*stack)->next->n;
 	(*stack)->next->n = sum;
 	pop(stack, line_number);
-=======
-	fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
-	exit(EXIT_FAILURE);
->>>>>>> 0190df0e19126740d62d6b16c6cf46754c1a2d7f
 }
-
