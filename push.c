@@ -20,7 +20,7 @@ stack_t *push(stack_t **stack, unsigned int line_number, char *n)
 		exit(EXIT_FAILURE);
 	}
 	num = atoi(n);
-	num = atoi(n);
+	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		fprintf(stderr, "can't allocate memory\n");
