@@ -7,6 +7,7 @@
 void _free(stack_t *head)
 {
 	stack_t *tmp;
+
 	while (head != NULL)
 	{
 		tmp = head;
